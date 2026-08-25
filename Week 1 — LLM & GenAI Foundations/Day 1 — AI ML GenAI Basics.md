@@ -151,4 +151,4 @@ flowchart TD
     G --> H["Limitations: Hallucination, outdated info,\nno live access, context limits, weak exact logic"]
 ```
 
-**[Day 2 — How LLMs Work:](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%202%20%E2%80%94%20How%20LLMs%20Work.md)**How LLMs Work
+**[Next - Day 2 — How LLMs Work](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%202%20%E2%80%94%20How%20LLMs%20Work.md)**
