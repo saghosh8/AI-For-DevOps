@@ -5,9 +5,9 @@
 
 Think of it like **three boxes, one inside the other.**
 
-- **AI (Artificial Intelligence)** = the big goal → make a machine act "smart" like a human.
-- **ML (Machine Learning)** = one way to achieve AI → the machine **learns from data** instead of being told exact rules.
-- **Deep Learning (DL)** = a special type of ML that uses **neural networks with many layers**, good at very complex patterns (like understanding language or images).
+* **AI (Artificial Intelligence)** = the big goal → make a machine act "smart" like a human.
+* **ML (Machine Learning)** = one way to achieve AI → the machine **learns from data** instead of being told exact rules.
+* **Deep Learning (DL)** = a special type of ML that uses **neural networks with many layers**, good at very complex patterns (like understanding language or images).
 
 ```mermaid
 flowchart TB
@@ -20,14 +20,28 @@ flowchart TB
         end
         AItext["Example: A chatbot that\nanswers 'why did my\npipeline fail?'"]
     end
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class AI purple
+    class ML orange
+    class DL green
+    class AItext blue
+    class MLtext blue
+    class DLtext blue
 ```
 
 **DevOps way to remember it:**
-| Term | Simple meaning | DevOps Example |
-|---|---|---|
-| AI | Smart behavior, however achieved | An assistant that answers on-call questions |
-| ML | Learns patterns from past data | Predicts server crash before it happens, using past CPU logs |
-| DL | ML using deep neural networks | Detects weird log patterns across thousands of microservices at once |
+
+| Term | Simple meaning                   | DevOps Example                                                       |
+| ---- | -------------------------------- | -------------------------------------------------------------------- |
+| AI   | Smart behavior, however achieved | An assistant that answers on-call questions                          |
+| ML   | Learns patterns from past data   | Predicts server crash before it happens, using past CPU logs         |
+| DL   | ML using deep neural networks    | Detects weird log patterns across thousands of microservices at once |
 
 **Rule of thumb:** All Deep Learning is ML. All ML is AI. Not all AI is ML (some AI is just hardcoded rules, like a simple `if-else` alert script).
 
@@ -43,12 +57,23 @@ Regular ML/AI often **predicts a number or a label** (e.g., "will this deploymen
 flowchart LR
     A["Prompt:\n'Write a Dockerfile\nfor a Node.js app'"] --> B["Generative AI Model"]
     B --> C["New Output:\nA complete Dockerfile\n(never existed before)"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A orange
+    class B purple
+    class C green
 ```
 
 **DevOps examples of Generative AI:**
-- Ask it to **write a Terraform script** for an S3 bucket → it generates one from scratch.
-- Ask it to **write a postmortem report** after an outage → it drafts the whole document.
-- Ask it to **explain a cryptic Jenkins error log** → it generates a plain-English explanation.
+
+* Ask it to **write a Terraform script** for an S3 bucket → it generates one from scratch.
+* Ask it to **write a postmortem report** after an outage → it drafts the whole document.
+* Ask it to **explain a cryptic Jenkins error log** → it generates a plain-English explanation.
 
 So: Generative AI doesn't just classify or predict — it **produces new stuff** based on a prompt.
 
@@ -66,7 +91,20 @@ flowchart LR
     B --> C["Embeddings\n(turns tokens into\nnumbers the model\ncan understand)"]
     C --> D["Transformer Layers\n(understands context,\ngrammar, meaning)"]
     D --> E["Predicts the\nmost likely NEXT word\nagain and again"]
-    E --> F["Final Output:\n'This usually means your\ncontainer is crashing on\nstartup — check logs with\nkubectl logs <pod>'"]
+    E --> F["Final Output:\n'This usually means your\ncontainer is crashing on\nstartup — check logs with\nkubectl logs &lt;pod&gt;'"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D green
+    class E orange
+    class F green
 ```
 
 **Key idea:** An LLM doesn't "think" like a human. It's really good at predicting **"what word/token comes next"** based on patterns it saw during training — but it does this so well that it feels like understanding.
@@ -87,6 +125,18 @@ flowchart LR
     B --> C["Wrong? Adjust internal\nweights slightly\n(done billions of times)"]
     C --> D["Repeat for days/weeks\non powerful GPUs"]
     D --> E["✅ Trained Model\n(saved, ready to use)"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B orange
+    class C red
+    class D purple
+    class E green
 ```
 
 *Like a new DevOps engineer spending weeks reading internal wikis, past incident reports, and shadowing calls — slowly building understanding.*
@@ -98,16 +148,27 @@ flowchart LR
     A["You ask:\n'Why is my Jenkins\nbuild stuck at\nDocker push step?'"] --> B["Already-Trained Model\n(no new learning happens now)"]
     B --> C["Model uses what it\nalready learned to\ngenerate an answer"]
     C --> D["✅ Answer shown to you\nin seconds"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B purple
+    class C orange
+    class D green
 ```
 
 *Like that same engineer, now fully onboarded, answering an on-call page using what they already learned — they aren't studying a new wiki page mid-incident.*
 
-| | Training | Inference |
-|---|---|---|
-| When | Once (or occasionally, to update model) | Every single time you send a prompt |
-| Cost | Very expensive, takes days/weeks, huge GPU clusters | Cheap and fast, seconds |
-| DevOps analogy | New engineer's onboarding period | Engineer answering a live on-call ticket |
-| Does it "learn" from your question? | N/A | ❌ No — it doesn't permanently learn from your one chat |
+|                                     | Training                                            | Inference                                              |
+| ----------------------------------- | --------------------------------------------------- | ------------------------------------------------------ |
+| When                                | Once (or occasionally, to update model)             | Every single time you send a prompt                    |
+| Cost                                | Very expensive, takes days/weeks, huge GPU clusters | Cheap and fast, seconds                                |
+| DevOps analogy                      | New engineer's onboarding period                    | Engineer answering a live on-call ticket               |
+| Does it "learn" from your question? | N/A                                                 | ❌ No — it doesn't permanently learn from your one chat |
 
 ---
 
@@ -122,6 +183,19 @@ flowchart TD
     L --> C["No Live Access\nCan't check your actual\nserver/cluster unless\nconnected to real tools"]
     L --> D["Context Length Limit\nCan't read your entire\n50,000-line log file\nin one go"]
     L --> E["Weak at Exact Logic\nCan mess up precise\nmath/step-by-step logic\nin complex YAML/configs"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class L red
+    class A orange
+    class B orange
+    class C orange
+    class D orange
+    class E orange
 ```
 
 **DevOps examples of each:**
@@ -147,6 +221,21 @@ flowchart TD
     E --> F["Training: Model learns once, offline"]
     F --> G["Inference: Model answers you, every time you ask"]
     G --> H["Limitations: Hallucination, outdated info,\nno live access, context limits, weak exact logic"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A purple
+    class B orange
+    class C green
+    class D blue
+    class E purple
+    class F orange
+    class G green
+    class H red
 ```
 
 ---
