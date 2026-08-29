@@ -136,3 +136,15 @@ flowchart TD
     D --> E["Parameters: the model's learned\n'knowledge', more = more capable"]
     E --> F["Temperature: controls how\npredictable vs creative\nthe output is"]
 ```
+
+---
+
+## ⭐ Support
+
+If you found this repository useful:
+
+<a href="https://github.com/saghosh8/AI-For-DevOps">
+  <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
+</a>
+
+---
