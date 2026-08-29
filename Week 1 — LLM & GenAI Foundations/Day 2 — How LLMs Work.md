@@ -1,5 +1,4 @@
 # Day 2 — How LLMs Work
-### (Explained in simple language, with DevOps examples only)
 
 ---
 
