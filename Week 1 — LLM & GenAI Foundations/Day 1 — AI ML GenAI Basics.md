@@ -148,8 +148,6 @@ flowchart TD
     F --> G["Inference: Model answers you, every time you ask"]
     G --> H["Limitations: Hallucination, outdated info,\nno live access, context limits, weak exact logic"]
 ```
-| 📘 Next — Day 2: How LLMs Work | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%202%20%E2%80%94%20How%20LLMs%20Work.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ---
 
@@ -160,3 +158,6 @@ If you found this repository useful:
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
 </a>
+
+| 📘 Next — Day 2: How LLMs Work | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%202%20%E2%80%94%20How%20LLMs%20Work.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
