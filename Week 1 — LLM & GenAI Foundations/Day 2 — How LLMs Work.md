@@ -137,5 +137,3 @@ flowchart TD
     D --> E["Parameters: the model's learned\n'knowledge', more = more capable"]
     E --> F["Temperature: controls how\npredictable vs creative\nthe output is"]
 ```
-
-**Tomorrow (Day 3 idea):** Prompt Engineering — system prompts, few-shot examples, and how to write better prompts for DevOps tasks (log analysis, IaC generation, incident summaries).
