@@ -1,6 +1,4 @@
 # Day 1 — AI / ML / GenAI Basics
-### (Explained in simple language, with DevOps examples only)
-
 ---
 
 ## 1. AI vs ML vs Deep Learning
