@@ -250,7 +250,7 @@ If you found this repository useful:
 
 ---
 
-## 💬 Discussions
+## 💬 Have a Query
 
 Have a question, suggestion, or idea?
 
