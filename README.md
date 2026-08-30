@@ -1,9 +1,18 @@
 # AI For DevOps
 
+<a href="https://github.com/saghosh8/AI-For-DevOps">
+  <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=STAR" />
+</a>
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/github/forks/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=FORK" />
+</a>
+<a href="https://github.com/saghosh8/AI-For-DevOps/discussions/3">
+  <img src="https://img.shields.io/badge/💬%20DISCUSSIONS-6366f1?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
 This is a **21-day AI & GenAI learning journey specially designed for DevOps Engineers**, focusing on practical concepts and real-world applications.
 
 The course covers **LLMs, GenAI, AI-powered DevOps, automation, and hands-on use cases** to help DevOps engineers integrate AI into their daily workflows.
-
 
 # 🟦 Week 1 — LLM & GenAI Foundations
 
