@@ -1,5 +1,4 @@
 # Day 3 — Prompt Engineering
-### (Explained in simple language, with DevOps examples only)
 
 ---
 
