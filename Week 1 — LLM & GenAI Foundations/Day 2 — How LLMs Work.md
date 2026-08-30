@@ -12,6 +12,17 @@ flowchart LR
     B --> C["Tokens:\n['kube', 'ctl', ' get', ' pods', ' -n', ' prod']"]
     C --> D["Each token converted\nto a number (ID)"]
     D --> E["Model processes\nthe numbers"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D orange
+    class E green
 ```
 
 **Why it matters for DevOps:**
@@ -36,6 +47,17 @@ flowchart TB
         D["Your new question"]
     end
     CW --> E["Model can only 'see'\nwhat fits inside this window"]
+
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+
+    class CW purple
+    class A blue
+    class B blue
+    class C blue
+    class D blue
+    class E green
 ```
 
 **DevOps example:**
@@ -53,11 +75,23 @@ The **Transformer** is the core architecture (the "engine") behind almost all mo
 
 ```mermaid
 flowchart LR
-    A["Input tokens:\n'Pod crashed because\nmemory limit exceeded'"] --> B["Step 1: Embeddings\n(tokens → numbers)"]
+    A["Input tokens:\n'Pod crashed because\nmemory limit exceeded'"] --> B["Step 1: Embeddings\n(tokens to numbers)"]
     B --> C["Step 2: Attention\n(figure out which words\nrelate to which)"]
     C --> D["Step 3: Feed-Forward Layers\n(process the info further)"]
     D --> E["Repeat Steps 2-3\nmany times (many layers)"]
-    E --> F["Output: predicts next token\n→ builds full answer\nword by word"]
+    E --> F["Output: predicts next token,\nbuilds full answer\nword by word"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D orange
+    class E purple
+    class F green
 ```
 
 **DevOps analogy:** Imagine a senior SRE reading an entire incident timeline **all at once** (not line by line, forgetting earlier lines) — instantly connecting "memory limit exceeded" in line 3 with "OOMKilled" in line 47. That's what the Transformer's parallel processing lets the model do.
@@ -72,10 +106,24 @@ flowchart LR
 flowchart TD
     A["Sentence:\n'The pod restarted because\nIT ran out of memory'"] --> B{"Attention asks:\nWhat does 'IT' refer to?"}
     B --> C["Looks at all other words\nand scores relevance"]
-    C --> D["'pod' → high relevance ✅"]
-    C --> E["'restarted' → medium relevance"]
-    C --> F["'because' → low relevance"]
+    C --> D["'pod': high relevance"]
+    C --> E["'restarted': medium relevance"]
+    C --> F["'because': low relevance"]
     D --> G["Model understands:\n'IT' = 'the pod'"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D green
+    class E orange
+    class F red
+    class G green
 ```
 
 **DevOps example:** In the sentence *"The deployment failed because the image tag was wrong, so it rolled back"* — attention helps the model correctly link **"it"** back to **"the deployment"**, not to "the image tag." This is how the model keeps track of what's being talked about across a long paragraph or log trace, even with many technical terms in between.
@@ -94,6 +142,17 @@ flowchart LR
     B --> C["These parameters =\nthe model's learned\n'knowledge'"]
     C --> D["Small model:\nfewer parameters,\nfaster, cheaper,\nless capable"]
     C --> E["Large model:\nmore parameters,\nslower, costlier,\nmore capable"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D orange
+    class E green
 ```
 
 **DevOps analogy:** Think of parameters like the number of **runbooks + past-incident patterns** an engineer has memorized.
@@ -116,6 +175,19 @@ flowchart TD
     B --> E["Output: 'Fix deploy script bug'\n(predictable, focused,\nsame answer every time)"]
     C --> F["Output: 'Resolve deployment\nscript error causing\nfailed rollouts'\n(natural variation)"]
     D --> G["Output: highly varied,\nmore creative, sometimes\noff-topic or inconsistent"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B green
+    class C orange
+    class D red
+    class E green
+    class F orange
+    class G red
 ```
 
 **DevOps examples:**
@@ -135,6 +207,19 @@ flowchart TD
     C --> D["Attention: decides which words\nrelate to which, inside the Transformer"]
     D --> E["Parameters: the model's learned\n'knowledge', more = more capable"]
     E --> F["Temperature: controls how\npredictable vs creative\nthe output is"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+    classDef red fill:#FEE2E2,stroke:#EF4444,color:#1F2937
+
+    class A blue
+    class B orange
+    class C purple
+    class D green
+    class E red
+    class F blue
 ```
 
 ---
