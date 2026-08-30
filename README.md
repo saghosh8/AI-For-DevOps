@@ -34,7 +34,7 @@ If you found this repository useful:
 
 Have a question, suggestion, or idea?
 
-<a href="https://github.com/saghosh8/AI-For-DevOps/discussions">
+<a href="https://github.com/saghosh8/AI-For-DevOps/discussions/3">
   <img src="https://img.shields.io/badge/💬%20JOIN%20DISCUSSION-6366f1?style=for-the-badge&logo=github&logoColor=white" />
 </a>
 
