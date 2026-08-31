@@ -3,6 +3,7 @@
 ---
 
 ## 1. Tokens
+### 🧪 Practical
 
 An LLM doesn't read words the way humans do. It breaks text into small chunks called **tokens**. A token can be a full word, part of a word, a symbol, or even a space.
 
@@ -58,6 +59,7 @@ Tokens: ['kube', 'ct', 'l', ' get', ' pods', ' -n', ' prod']
 ---
 
 ## 2. Context Window
+### 🧪 Practical
 
 The **context window** is the **maximum number of tokens** the model can "see" at once — think of it as the model's short-term memory for a single conversation.
 
@@ -109,6 +111,7 @@ print("A 128k context window can fit this many times:", 128_000 // len(enc.encod
 ---
 
 ## 3. Transformer Basics
+### 📖 Theory
 
 The **Transformer** is the core architecture (the "engine") behind almost all modern LLMs. Its key innovation: it looks at **all the words in the input at once** (in parallel) and figures out how they relate to each other — instead of reading one word at a time like older models did.
 
@@ -140,6 +143,7 @@ flowchart LR
 ---
 
 ## 4. Attention — High Level
+### 📖 Theory
 
 **Attention** is the mechanism inside the Transformer that decides: *"For this word, which other words in the input matter most?"*
 
@@ -176,6 +180,7 @@ flowchart TD
 ---
 
 ## 5. Model Parameters
+### 📖 Theory
 
 **Parameters** are the internal "settings" (numbers/weights) the model learned during training. More parameters generally means the model can capture more complex patterns — but also needs more compute to run.
 
@@ -210,6 +215,7 @@ flowchart LR
 ---
 
 ## 6. Temperature
+### 🧪 Practical
 
 **Temperature** is a setting that controls how "random" or "creative" the model's output is, when picking the next token.
 
