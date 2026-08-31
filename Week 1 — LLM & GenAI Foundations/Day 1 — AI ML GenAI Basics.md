@@ -2,6 +2,7 @@
 ---
 
 ## 1. AI vs ML vs Deep Learning
+### 📖 Theory
 
 Think of it like **three boxes, one inside the other.**
 
@@ -48,6 +49,7 @@ flowchart TB
 ---
 
 ## 2. Generative AI
+### 🧪 Practical
 
 Regular ML/AI often **predicts a number or a label** (e.g., "will this deployment fail? Yes/No").
 
@@ -77,9 +79,23 @@ flowchart LR
 
 So: Generative AI doesn't just classify or predict — it **produces new stuff** based on a prompt.
 
+**🧪 Try it yourself:**
+```
+1. Open any AI chatbot.
+2. Ask: "Write a Dockerfile for a simple Node.js app
+   that listens on port 3000."
+3. Notice it generates a brand-new file from scratch -
+   not something copied word-for-word from one place -
+   that's Generative AI in action.
+4. Now ask it to generate a Kubernetes Deployment YAML
+   for that same app, and compare how it adapts the
+   output to a different format.
+```
+
 ---
 
 ## 3. LLMs (Large Language Models)
+### 🧪 Practical
 
 An LLM is a **Generative AI model that specializes in text/code**. It's "large" because it's trained on a huge amount of text (docs, code, books, forums) and has billions of internal parameters.
 
@@ -111,9 +127,20 @@ flowchart LR
 
 **DevOps example:** You paste a Jenkins pipeline error into an LLM chatbot. It doesn't magically "know" your server — it recognizes the **pattern** of the error text (because it has seen millions of similar errors during training) and predicts a helpful explanation.
 
+**🧪 Try it yourself:**
+```
+1. Paste a real (or made-up) error into a chatbot, e.g.:
+   "CrashLoopBackOff: back-off restarting failed container"
+2. Ask: "What does this mean and how do I fix it?"
+3. Notice the answer is built word-by-word based on
+   patterns the model has seen before - not because it
+   checked your actual cluster.
+```
+
 ---
 
 ## 4. Training vs Inference
+### 📖 Theory
 
 This is one of the most important concepts — and a great DevOps analogy is **onboarding a new engineer vs that engineer being on-call.**
 
@@ -173,6 +200,7 @@ flowchart LR
 ---
 
 ## 5. LLM Limitations
+### 🧪 Practical
 
 LLMs are powerful, but they are **not perfect**. Important to know these before trusting them blindly in production DevOps work.
 
@@ -207,6 +235,18 @@ flowchart TD
 5. **Weak exact logic** — It might miscount indentation levels in a long YAML file, causing a broken manifest.
 
 **Golden rule for DevOps use:** Always **verify AI-generated scripts, configs, and commands** in a safe/staging environment before running them in production — never trust and deploy blindly.
+
+**🧪 Try it yourself:**
+```
+1. Ask a chatbot: "What does the --auto-heal flag do in
+   kubectl scale?" (this flag doesn't actually exist)
+2. See if it confidently makes up an explanation anyway -
+   that's hallucination.
+3. Now ask it something time-sensitive, like the latest
+   version of a tool, and double check the answer against
+   the tool's real changelog - that's the outdated
+   knowledge limitation in action.
+```
 
 ---
 
