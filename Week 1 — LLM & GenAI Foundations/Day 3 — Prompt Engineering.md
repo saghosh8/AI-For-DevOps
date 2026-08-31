@@ -3,6 +3,7 @@
 ---
 
 ## 1. System Prompts vs User Prompts
+### 🧪 Practical
 
 Every conversation with an LLM usually has **two kinds of instructions**:
 
@@ -33,9 +34,23 @@ flowchart TD
 
 **Simple way to remember it:** System prompt = the job description you give a new team member on day one. User prompt = the actual ticket they get assigned today.
 
+**🧪 Try it yourself:**
+```
+1. Open any AI chat tool.
+2. Set a system prompt:
+   "You are a strict DevOps assistant. Only ever
+   answer in a numbered list, max 5 steps."
+3. Ask the user prompt:
+   "How do I restart a Kubernetes deployment?"
+4. Notice how the answer format obeys your system
+   prompt's rule, even though you never mentioned
+   "numbered list" in the user prompt itself.
+```
+
 ---
 
 ## 2. Few-Shot Prompting
+### 🧪 Practical
 
 **Zero-shot** = you just ask the question directly, with no examples.
 **Few-shot** = you give the model a few *examples* of the input → output pattern you want, before asking your real question. This helps the model match your exact format.
@@ -61,9 +76,25 @@ flowchart TD
 
 **Rule of thumb:** Use few-shot whenever you need a **specific, repeatable format** — like log-line summaries, alert titles, or postmortem section headers.
 
+**🧪 Try it yourself:**
+```
+1. Ask zero-shot:
+   "Summarize this error: Connection refused on port 5432."
+   -> Notice the free-form style.
+
+2. Now try few-shot - give 2 examples first, then ask:
+   "DB timeout on port 3306" -> "Alert: MySQL connection timeout"
+   "503 from upstream nginx" -> "Alert: Nginx upstream failure"
+   "Connection refused on port 5432" -> ?
+
+3. Compare - the few-shot answer should match your
+   "Alert: ..." format exactly.
+```
+
 ---
 
 ## 3. Prompt Templates
+### 🧪 Practical
 
 A **prompt template** is a reusable prompt with **placeholders** you fill in with different values each time — instead of rewriting the whole prompt from scratch for every task.
 
@@ -84,13 +115,30 @@ flowchart LR
     class D green
 ```
 
-**DevOps example:** A team builds a Slack bot where anyone can type `/explain-error <stage> <message>`. Behind the scenes, that's just filling in a saved prompt template — the engineer never has to write a full prompt from scratch, and every teammate gets the same well-tested prompt structure, just with different values swapped in.
+**DevOps example:** A team builds a Slack bot where anyone can type `/explain-error {stage} {message}`. Behind the scenes, that's just filling in a saved prompt template — the engineer never has to write a full prompt from scratch, and every teammate gets the same well-tested prompt structure, just with different values swapped in.
 
 **Why this matters:** Templates make prompts **reusable, consistent, and easy to improve** — fix the template once, and every future use of it instantly gets better.
+
+**🧪 Try it yourself:**
+```
+1. Write your own template:
+   "Explain why this Terraform resource named
+   {RESOURCE_NAME} failed to apply with error:
+   {ERROR_MSG}. Suggest a fix."
+
+2. Fill it in with a real example:
+   RESOURCE_NAME = aws_s3_bucket.logs
+   ERROR_MSG = BucketAlreadyExists
+
+3. Send the filled-in version to an LLM and see how
+   much faster this is than typing a fresh prompt
+   from scratch.
+```
 
 ---
 
 ## 4. Structured Output
+### 🧪 Practical
 
 By default, an LLM replies in free-flowing text — great for reading, but hard for a script to parse reliably. **Structured output** means asking the model to reply in a fixed format (usually JSON) so your automation can read it directly.
 
@@ -117,9 +165,25 @@ flowchart TD
 
 **Practical tip:** Always explicitly say *"reply ONLY in JSON, no extra explanation"* — otherwise the model may add a friendly sentence before/after the JSON, which breaks automated parsing.
 
+**🧪 Try it yourself:**
+```
+1. Prompt:
+   "A pod keeps OOMKilling every 2 minutes.
+   Reply ONLY in JSON with keys:
+   severity, root_cause, fix_suggestion."
+
+2. Check the reply - it should be valid JSON with
+   no extra sentences around it.
+
+3. Paste that JSON into any online JSON validator to
+   confirm it actually parses cleanly - that's the
+   real test of "structured" output.
+```
+
 ---
 
 ## 5. Prompt Chaining
+### 🧪 Practical
 
 **Prompt chaining** means breaking a big task into **multiple smaller prompts**, where the output of one prompt becomes the input to the next — instead of trying to do everything in one giant prompt.
 
@@ -146,11 +210,31 @@ flowchart LR
 
 **DevOps example:** Instead of one giant prompt asking "read this log, figure out severity, and write a ticket" (which the model can partially get wrong or mix up), you split it into 3 focused steps — summarize, classify, then draft. Each step is simpler, more accurate, and easier to debug if something goes wrong (you can check exactly which step failed).
 
-**Simple way to remember it:** Prompt chaining = a CI/CD pipeline, but for prompts. Each "stage" does one job well and passes its output to the next stage — just like `build → test → deploy`.
+**Simple way to remember it:** Prompt chaining = a CI/CD pipeline, but for prompts. Each "stage" does one job well and passes its output to the next stage — just like `build -> test -> deploy`.
+
+**🧪 Try it yourself:**
+```
+1. Step 1 - ask:
+   "Summarize this in one sentence: 'Pod
+   nginx-7d8f8c9c6-xk2pl restarted 12 times in the
+   last hour, logs show OOMKilled each time.'"
+
+2. Step 2 - take that summary and ask:
+   "Given this summary, classify severity as
+   low, medium, or high."
+
+3. Step 3 - take both outputs and ask:
+   "Draft a short incident ticket using this
+   summary and severity."
+
+4. Notice how each step is easy to check individually,
+   versus asking for all 3 things in one single prompt.
+```
 
 ---
 
 ## 6. Prompt Security
+### 📖 Theory
 
 LLMs can be tricked by malicious or careless input — this is called **prompt injection**. Since LLMs are increasingly connected to real DevOps tools (running commands, reading files, triggering pipelines), prompt security matters a lot.
 
@@ -179,6 +263,8 @@ flowchart TD
 - Never let an LLM directly execute destructive commands (`delete`, `destroy`, `drop`) without a human approval step in between.
 - Clearly separate **trusted instructions** (your system prompt) from **untrusted data** (logs, tickets, user-submitted text) so the model knows one is a command source and the other is just content to read.
 - Limit what tools/permissions the LLM actually has access to — least privilege applies to AI agents too, just like it does to service accounts.
+
+*(This one's a "know the risk and follow the rules" topic rather than a hands-on exercise — the practical part is applying these rules whenever you connect an LLM to real infrastructure.)*
 
 ---
 
@@ -229,3 +315,6 @@ Have a question, suggestion, or idea?
 </a>
 
 ---
+
+| 📘 Next — Day 4: RAG (Retrieval-Augmented Generation) | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%204%20%E2%80%94%20RAG.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
