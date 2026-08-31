@@ -315,6 +315,3 @@ Have a question, suggestion, or idea?
 </a>
 
 ---
-
-| 📘 Next — Day 4: RAG (Retrieval-Augmented Generation) | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%204%20%E2%80%94%20RAG.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
