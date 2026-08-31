@@ -2,9 +2,13 @@
 
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=STAR" />
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/badge/🍴%20FORK-0057B8?style=for-the-badge&logo=github&logoColor=white" />
+</a>
 <a href="https://github.com/saghosh8/AI-For-DevOps/discussions/3">
   <img src="https://img.shields.io/badge/💬%20HAVE%20A%20QUERY%3F-6366f1?style=for-the-badge&logo=github&logoColor=white" />
 </a>
+
 
 This is a **21-day AI & GenAI learning journey specially designed for DevOps Engineers**, focusing on practical concepts and real-world applications.
 
@@ -27,6 +31,9 @@ If you found this repository useful:
 
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
+</a>
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/badge/🍴%20FORK-0057B8?style=for-the-badge&logo=github&logoColor=white" />
 </a>
 
 ---
