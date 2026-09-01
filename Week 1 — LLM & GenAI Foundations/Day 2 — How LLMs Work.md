@@ -309,6 +309,10 @@ flowchart TD
 If you found this repository useful:
 
 [![Star This Repo](https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO)](https://github.com/saghosh8/AI-For-DevOps)
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/github/forks/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=FORK" />
+</a>
+
 
 ---
 
