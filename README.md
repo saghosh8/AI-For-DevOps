@@ -62,7 +62,7 @@ If you found this repository useful:
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
 </a>
 <a href="https://github.com/saghosh8/AI-For-DevOps/fork">
-  <img src="https://img.shields.io/badge/🍴%20FORK-0057B8?style=for-the-badge&logo=github&logoColor=white" />
+  <img src="https://img.shields.io/github/forks/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=FORK" />
 </a>
 
 ---
