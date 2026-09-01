@@ -342,6 +342,9 @@ If you found this repository useful:
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
 </a>
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/github/forks/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=FORK" />
+</a>
 
 ---
 
@@ -354,3 +357,6 @@ Have a question, suggestion, or idea?
 </a>
 
 ---
+
+| 📘 Next — Day 5: Models & Model Selection | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%205%20%E2%80%94%20Models%20%26%20Model%20Selection.md) |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
