@@ -355,5 +355,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 5: Models & Model Selection.md | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%205%20%E2%80%94%20Models%20%26%20Model%20Selection.md) |
+| 📘 Next — Day 5: Models & Model Selection | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%205%20%E2%80%94%20Models%20%26%20Model%20Selection.md) |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
