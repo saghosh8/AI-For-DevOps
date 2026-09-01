@@ -255,6 +255,9 @@ If you found this repository useful:
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&logoColor=white&label=STAR%20THIS%20REPO" />
 </a>
+<a href="https://github.com/saghosh8/AI-For-DevOps/fork">
+  <img src="https://img.shields.io/github/forks/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=FORK" />
+</a>
 
 ---
 
@@ -268,5 +271,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 6 | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%206.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📘 Next — Day 6: AI Application Architecture | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/saghosh8-patch-3/Week%201%20%E2%80%94%20LLM%20%26%20GenAI%20Foundations/Day%206%20%E2%80%94%20AI%20Application%20Architecture.md) |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
