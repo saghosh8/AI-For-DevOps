@@ -47,16 +47,16 @@ class ClaudeProvider(LLMProvider):
         # a real call to the Anthropic API would go here
         return f"[Claude] Answer to: {prompt}"
 
-class GPTProvider(LLMProvider):
+class GeminiProvider(LLMProvider):
     def ask(self, prompt: str) -> str:
-        # a real call to the OpenAI API would go here
-        return f"[GPT] Answer to: {prompt}"
+        # a real call to the Gemini API would go here
+        return f"[Gemini] Answer to: {prompt}"
 
 def run(provider: LLMProvider, prompt: str):
     print(provider.ask(prompt))
 
 run(ClaudeProvider(), "Explain kubectl rollout status")
-run(GPTProvider(), "Explain kubectl rollout status")
+run(GeminiProvider(), "Explain kubectl rollout status")
 ```
 ```
 1. Run this and notice both calls use the exact same
@@ -74,8 +74,8 @@ Every provider's real SDK returns data in a **different shape**. An adapter func
 
 ```mermaid
 flowchart LR
-    A["Provider A SDK call:\nclient.chat.create(...)"] --> C["Adapter function\ntranslates to common shape"]
-    B["Provider B SDK call:\nclient.messages.create(...)"] --> C
+    A["Provider A SDK call:\nclient.messages.create(...)"] --> C["Adapter function\ntranslates to common shape"]
+    B["Provider B SDK call:\nclient.models.generate_content(...)"] --> C
     C --> D["Your app only ever\nsees ONE consistent\nfunction signature"]
 
     classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
@@ -88,7 +88,7 @@ flowchart LR
     class D green
 ```
 
-**DevOps example:** Anthropic's SDK nests the reply under `content[0].text`, while OpenAI's nests it under `choices[0].message.content` — without an adapter, every part of your app that reads the answer needs to know which provider it's talking to. With one, that messy detail lives in exactly one place.
+**DevOps example:** Anthropic's SDK nests the reply under `content[0].text` and the token count under `usage.output_tokens`, while Gemini's SDK exposes the reply directly as `response.text` and the token count under `usage_metadata.candidates_token_count` — without an adapter, every part of your app that reads the answer needs to know which provider it's talking to. With one, that messy detail lives in exactly one place.
 
 **🧪 Try it yourself:**
 ```python
@@ -97,27 +97,27 @@ def call_claude_sdk(prompt):
     return {"content": [{"text": f"Claude says: {prompt}"}],
             "usage": {"output_tokens": 12}}
 
-def call_gpt_sdk(prompt):
-    # pretend this is a real OpenAI-style SDK response
-    return {"choices": [{"message": {"content": f"GPT says: {prompt}"}}],
-            "usage": {"completion_tokens": 15}}
+def call_gemini_sdk(prompt):
+    # pretend this is a real Gemini-style SDK response
+    return {"text": f"Gemini says: {prompt}",
+            "usage_metadata": {"candidates_token_count": 15}}
 
 def claude_adapter(prompt):
     raw = call_claude_sdk(prompt)
     return {"text": raw["content"][0]["text"],
             "tokens": raw["usage"]["output_tokens"]}
 
-def gpt_adapter(prompt):
-    raw = call_gpt_sdk(prompt)
-    return {"text": raw["choices"][0]["message"]["content"],
-            "tokens": raw["usage"]["completion_tokens"]}
+def gemini_adapter(prompt):
+    raw = call_gemini_sdk(prompt)
+    return {"text": raw["text"],
+            "tokens": raw["usage_metadata"]["candidates_token_count"]}
 
 print(claude_adapter("status check"))
-print(gpt_adapter("status check"))
+print(gemini_adapter("status check"))
 ```
 ```
 1. Run this and compare the two print statements.
-2. Even though call_claude_sdk() and call_gpt_sdk() return
+2. Even though call_claude_sdk() and call_gemini_sdk() return
    totally different shapes, both adapters output the SAME
    {text, tokens} structure - that's the abstraction at work.
 ```
@@ -166,10 +166,10 @@ config = yaml.safe_load(config_text)
 def ask_claude(prompt):
     return f"[Claude] {prompt}"
 
-def ask_gpt(prompt):
-    return f"[GPT] {prompt}"
+def ask_gemini(prompt):
+    return f"[Gemini] {prompt}"
 
-PROVIDERS = {"claude": ask_claude, "gpt": ask_gpt}
+PROVIDERS = {"claude": ask_claude, "gemini": ask_gemini}
 
 def ask_llm(prompt):
     fn = PROVIDERS[config["provider"]]
@@ -179,7 +179,7 @@ print(ask_llm("Summarize this deploy log"))
 ```
 ```
 1. Run this - it should print the Claude version.
-2. Change config_text to "provider: gpt" and run again.
+2. Change config_text to "provider: gemini" and run again.
 3. Notice ask_llm() itself never changed - only the config
    value did. That's config-driven switching.
 ```
@@ -210,7 +210,7 @@ flowchart LR
     class E blue
 ```
 
-**DevOps example:** A logging/cost-tracking pipeline that records `tokens_used` for every request only needs to work against ONE field name — not `output_tokens` for one provider and `completion_tokens` for another — because normalization already flattened that difference out.
+**DevOps example:** A logging/cost-tracking pipeline that records `tokens_used` for every request only needs to work against ONE field name — not `output_tokens` for Claude and `candidates_token_count` for Gemini — because normalization already flattened that difference out.
 
 **🧪 Try it yourself:**
 ```python
@@ -221,20 +221,20 @@ def normalize_claude_response(raw):
         "finish_reason": raw.get("stop_reason", "unknown"),
     }
 
-def normalize_gpt_response(raw):
+def normalize_gemini_response(raw):
     return {
-        "text": raw["choices"][0]["message"]["content"],
-        "tokens_used": raw["usage"]["completion_tokens"],
-        "finish_reason": raw["choices"][0].get("finish_reason", "unknown"),
+        "text": raw["text"],
+        "tokens_used": raw["usage_metadata"]["candidates_token_count"],
+        "finish_reason": raw.get("finish_reason", "unknown"),
     }
 
 claude_raw = {"content": [{"text": "pod restarted"}],
               "usage": {"output_tokens": 3}, "stop_reason": "end_turn"}
-gpt_raw = {"choices": [{"message": {"content": "pod restarted"}, "finish_reason": "stop"}],
-           "usage": {"completion_tokens": 3}}
+gemini_raw = {"text": "pod restarted",
+              "usage_metadata": {"candidates_token_count": 3}, "finish_reason": "STOP"}
 
 print(normalize_claude_response(claude_raw))
-print(normalize_gpt_response(gpt_raw))
+print(normalize_gemini_response(gemini_raw))
 ```
 ```
 1. Run this and compare the two printed dictionaries.
