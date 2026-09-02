@@ -63,17 +63,17 @@ flowchart TD
 **🧪 Try it yourself:**
 ```python
 import os
-from anthropic import Anthropic
+from google import genai
 
 # Good practice: read the key from an environment variable,
 # never hardcode it directly in your script.
-client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 print("Client created — key was loaded from the environment, not the code.")
 ```
 ```
 1. Set the key in your terminal first:
-   export ANTHROPIC_API_KEY="your-real-key-here"
+   export GEMINI_API_KEY="your-real-key-here"
 2. Run the script above.
 3. Now try removing the export and re-running it -
    you'll get an authentication error, which is exactly
@@ -89,9 +89,9 @@ A request has a defined shape (which model to use, your message, how long the re
 
 ```mermaid
 flowchart LR
-    A["Request JSON:\nmodel, messages,\nmax_tokens"] --> B["LLM API"]
-    B --> C["Response JSON:\nid, content,\nusage, stop_reason"]
-    C --> D["Your script reads\nthe 'content' field"]
+    A["Request:\nmodel, contents,\nconfig"] --> B["LLM API"]
+    B --> C["Response object:\ntext, usage_metadata,\nfinish_reason"]
+    C --> D["Your script reads\nthe 'text' field"]
 
     classDef purple fill:#EDE9FE,stroke:#8B5CF6,color:#1F2937
     classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
@@ -104,31 +104,30 @@ flowchart LR
     class D blue
 ```
 
-**DevOps example:** A monitoring script sends a request asking the model to explain a Kubernetes event, then reads just the `content` field of the JSON response and drops it into a ticket description — everything else in the response (token counts, IDs) can be ignored or logged for cost tracking.
+**DevOps example:** A monitoring script sends a request asking the model to explain a Kubernetes event, then reads just the `text` field of the response and drops it into a ticket description — everything else (token counts, IDs) can be ignored or logged for cost tracking.
 
 **🧪 Try it yourself:**
 ```python
-from anthropic import Anthropic
+from google import genai
+from google.genai import types
 
-client = Anthropic()
+client = genai.Client()
 
-response = client.messages.create(
-    model="claude-sonnet-4-5",
-    max_tokens=100,
-    messages=[
-        {"role": "user", "content": "Explain 'kubectl rollout status' in one line"}
-    ]
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Explain 'kubectl rollout status' in one line",
+    config=types.GenerateContentConfig(max_output_tokens=100)
 )
 
-print("Answer:", response.content[0].text)
-print("Tokens used:", response.usage)
+print("Answer:", response.text)
+print("Tokens used:", response.usage_metadata)
 ```
 ```
 1. Run this and look at the two printed lines.
 2. Notice the answer text and the usage numbers come
-   from two different parts of the same JSON response.
-3. Change max_tokens to a very small number (like 5) and
-   run again - see how the answer gets cut off.
+   from two different parts of the same response object.
+3. Change max_output_tokens to a very small number (like 5)
+   and run again - see how the answer gets cut off.
 ```
 
 ---
@@ -163,19 +162,15 @@ flowchart TD
 
 **🧪 Try it yourself:**
 ```python
-from anthropic import Anthropic
+from google import genai
 
-client = Anthropic()
+client = genai.Client()
 
-with client.messages.stream(
-    model="claude-sonnet-4-5",
-    max_tokens=200,
-    messages=[
-        {"role": "user", "content": "List 3 common causes of a Jenkins build failure"}
-    ]
-) as stream:
-    for text in stream.text_stream:
-        print(text, end="", flush=True)
+for chunk in client.models.generate_content_stream(
+    model="gemini-2.5-flash",
+    contents="List 3 common causes of a Jenkins build failure"
+):
+    print(chunk.text, end="", flush=True)
 ```
 ```
 1. Run this and watch the answer print out gradually,
@@ -219,28 +214,31 @@ flowchart TD
 **🧪 Try it yourself:**
 ```python
 import time
-from anthropic import Anthropic, RateLimitError
+from google import genai
+from google.genai import errors
 
-client = Anthropic()
+client = genai.Client()
 
 for attempt in range(5):
     try:
-        response = client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=50,
-            messages=[{"role": "user", "content": "Summarize: disk usage at 95%"}]
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents="Summarize: disk usage at 95%"
         )
-        print(response.content[0].text)
+        print(response.text)
         break
-    except RateLimitError:
-        wait = 2 ** attempt
-        print(f"Rate limited, retrying in {wait}s...")
-        time.sleep(wait)
+    except errors.ClientError as e:
+        if e.code == 429:
+            wait = 2 ** attempt
+            print(f"Rate limited, retrying in {wait}s...")
+            time.sleep(wait)
+        else:
+            raise
 ```
 ```
 1. This loop tries up to 5 times.
-2. Each time it hits a rate limit, it waits LONGER than
-   the last attempt before trying again (1s, 2s, 4s...).
+2. Each time it hits a 429 rate limit, it waits LONGER
+   than the last attempt before trying again (1s, 2s, 4s...).
 3. This "exponential backoff" pattern is the same one
    used for retrying flaky calls to any external service,
    not just LLM APIs.
@@ -280,23 +278,26 @@ flowchart TD
 
 **🧪 Try it yourself:**
 ```python
-from anthropic import Anthropic, APIError, APIConnectionError, RateLimitError
+from google import genai
+from google.genai import errors
 
-client = Anthropic()
+client = genai.Client()
 
 try:
-    response = client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=50,
-        messages=[{"role": "user", "content": "Explain OOMKilled in one line"}]
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents="Explain OOMKilled in one line"
     )
-    print(response.content[0].text)
-except RateLimitError:
-    print("Too many requests — back off and retry.")
-except APIConnectionError:
-    print("Network issue — check connectivity and retry.")
-except APIError as e:
-    print(f"API error: {e}")
+    print(response.text)
+except errors.ClientError as e:
+    if e.code == 401 or e.code == 403:
+        print("Unauthorized — check your API key.")
+    elif e.code == 429:
+        print("Too many requests — back off and retry.")
+    else:
+        print(f"Client error: {e.message}")
+except errors.ServerError as e:
+    print(f"Server error ({e.code}) — retry later.")
 ```
 ```
 1. Run this normally - it should succeed and print an answer.
