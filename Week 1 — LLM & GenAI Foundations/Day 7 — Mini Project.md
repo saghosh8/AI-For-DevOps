@@ -63,13 +63,15 @@ Prefer running it locally? The repo's own README has the equivalent `pip install
 
 ---
 
-## Input → Output
+# Input → Output
 
 **Input** (typed into the `question` field when running the workflow):
 
 ![Input](../images/input.png)
 
+
 **Output** (rendered automatically in the GitHub Actions run Summary):
+
 ![Output](../images/output-1.png)
 ![Output](../images/output-2.png)
 
