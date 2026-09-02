@@ -37,24 +37,21 @@ flowchart LR
 **🧪 Try it yourself**
 
 ```python
-# pip install tiktoken
-import tiktoken
+from google import genai
 
-enc = tiktoken.encoding_for_model("gpt-4")
+client = genai.Client()
 text = "kubectl get pods -n prod"
-tokens = enc.encode(text)
 
-print("Token count:", len(tokens))
-print("Tokens:", [enc.decode([t]) for t in tokens])
+result = client.models.count_tokens(model="gemini-2.5-flash", contents=text)
+print("Token count:", result.total_tokens)
 ```
 
 Output:
 ```
-Token count: 7
-Tokens: ['kube', 'ct', 'l', ' get', ' pods', ' -n', ' prod']
+Token count: 8
 ```
 
-👉 Paste your own `values.yaml` or log snippet in place of `text` and see how many tokens it actually costs.
+👉 Paste your own `values.yaml` or log snippet in place of `text` and see how many tokens it actually costs. Note: Gemini's tokenizer is different from OpenAI's `tiktoken` — the same text will produce a different exact count depending on which provider's tokenizer you use, but the *concept* (text gets split into chunks, chunks cost money) is identical everywhere.
 
 ---
 
@@ -65,7 +62,7 @@ The **context window** is the **maximum number of tokens** the model can "see" a
 
 ```mermaid
 flowchart TB
-    subgraph CW["Context Window (example: 128,000 tokens)"]
+    subgraph CW["Context Window (Gemini 2.5: ~1,000,000 tokens)"]
         A["Your system prompt /\ninstructions"]
         B["Earlier chat messages\n(previous questions & answers)"]
         C["The full log file\nyou just pasted"]
@@ -96,17 +93,21 @@ flowchart TB
 **🧪 Try it yourself**
 
 ```python
-import tiktoken
+from google import genai
 
-enc = tiktoken.encoding_for_model("gpt-4")
+client = genai.Client()
+
 with open("app.log") as f:
     log_text = f.read()
 
-print("This log file is", len(enc.encode(log_text)), "tokens")
-print("A 128k context window can fit this many times:", 128_000 // len(enc.encode(log_text)))
+result = client.models.count_tokens(model="gemini-2.5-flash", contents=log_text)
+tokens = result.total_tokens
+
+print("This log file is", tokens, "tokens")
+print("A ~1M-token context window can fit this many times:", 1_048_576 // tokens)
 ```
 
-👉 This turns "context window" from an abstract number into "oh, my log file alone eats 40% of the window."
+👉 This turns "context window" from an abstract number into "oh, my log file alone eats 5% of the window." Gemini's larger ~1M window (versus a smaller model's ~128k-200k) is one of its practical advantages for DevOps use cases involving huge log files or entire repos.
 
 ---
 
@@ -252,19 +253,19 @@ flowchart TD
 **🧪 Try it yourself**
 
 ```python
-from anthropic import Anthropic
+from google import genai
+from google.genai import types
 
-client = Anthropic()
+client = genai.Client()
 prompt = "Write a one-line commit message for a bug fix in the deploy script"
 
 for temp in [0, 0.7, 1.2]:
-    response = client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=50,
-        temperature=temp,
-        messages=[{"role": "user", "content": prompt}]
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(temperature=temp, max_output_tokens=50)
     )
-    print(f"Temperature {temp}: {response.content[0].text}\n")
+    print(f"Temperature {temp}: {response.text}\n")
 ```
 
 Example output:
