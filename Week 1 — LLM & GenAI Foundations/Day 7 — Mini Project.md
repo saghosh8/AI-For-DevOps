@@ -4,6 +4,8 @@
 
 This day is different from Days 1–6: instead of small snippets you run inline, you run a **complete project** that lives in its own repo — tests, CI, a README, a roadmap. This same repo is also where Day 14 (RAG) and Day 21 (the final agent project) get built on top, not rewritten from scratch. See the repo's `ROADMAP.md` for the full plan.
 
+![Architecture](../images/architecture.png)
+
 ---
 
 ## Problem Statement
