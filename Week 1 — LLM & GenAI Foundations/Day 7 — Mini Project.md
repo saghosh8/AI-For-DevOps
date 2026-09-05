@@ -102,5 +102,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 8: RAG Fundamentals | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%208%20%E2%80%94%20RAG%20Fundamentals.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
+| 📘 Next — Day 8: RAG Fundamentals | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%2008%20%E2%80%94%20RAG%20Fundamentals.md"><img src="https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
