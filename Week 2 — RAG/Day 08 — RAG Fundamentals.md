@@ -342,5 +342,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 9: Chunking Strategies & Embeddings Deep Dive | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%2009%20%E2%80%94%20Documents%20%26%20Ingestion.md) |
+| 📘 Next — Day 9: Documents & Ingestion | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%2009%20%E2%80%94%20Documents%20%26%20Ingestion.md) |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
