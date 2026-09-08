@@ -420,5 +420,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 14: RAG Project | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](hhttps://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%2014%20%E2%80%94%20RAG%20Project.md) |
+| 📘 Next — Day 14: RAG Project | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%202%20%E2%80%94%20RAG/Day%2014%20%E2%80%94%20RAG%20Project.md) |
 | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
