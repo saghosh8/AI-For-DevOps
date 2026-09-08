@@ -41,13 +41,77 @@ flowchart LR
 | Vector store | FAISS | Fast in-process similarity search |
 | Generation | Gemini (`gemini-2.5-flash`) | Writes the final grounded answer |
 
-> Theory-only — the rest of this file builds each piece, then wires them together in Section 7.
+> Theory-only — the rest of this file builds each piece, then wires them together in Section 8.
 
 ---
 
-## 2. Sentence Transformers
+## 2. Ollama
+
+### 📖 Theory
+
+**Ollama** is a tool for running open-source LLMs (Llama, Mistral, Gemma, and others) directly on your own machine — pull a model once, then serve it locally behind a simple API, no cloud account or per-token billing required.
+
+```mermaid
+flowchart LR
+    A["ollama pull llama3"] --> B["Model stored\nlocally"]
+    B --> C["ollama serve\n(local API on :11434)"]
+    C --> D["Your app calls\nlocalhost instead\nof a cloud API"]
+
+    classDef blue fill:#DBEAFE,stroke:#3B82F6,color:#1F2937
+    classDef orange fill:#FFE8CC,stroke:#F97316,color:#1F2937
+    classDef green fill:#D1FAE5,stroke:#10B981,color:#1F2937
+
+    class A blue
+    class B orange
+    class C orange
+    class D green
+```
+
+**DevOps analogy:** It's the difference between calling out to a managed cloud service and running that same workload as a container on your own box — same interface, but now it's local, private, and doesn't show up on a usage bill.
+
+**DevOps example:** For a RAG tool that queries internal runbooks — think incident response docs, credentials setup, infra notes — routing generation through Ollama means none of that sensitive context ever leaves the machine, which matters a lot more than it does for, say, summarizing public blog posts.
 
 ### 🧪 Practical
+
+**🧪 Try it yourself**
+
+```bash
+# Pull a model once (downloaded and cached locally)
+ollama pull llama3
+
+# Ollama now runs a local server on http://localhost:11434
+```
+
+```python
+import requests
+
+response = requests.post(
+    "http://localhost:11434/api/generate",
+    json={
+        "model": "llama3",
+        "prompt": "In one sentence, what does 'kubectl rollout undo' do?",
+        "stream": False,
+    },
+)
+
+print(response.json()["response"])
+```
+
+Example output:
+```
+`kubectl rollout undo` reverts a deployment to its previous revision,
+rolling back a bad or unwanted rollout.
+```
+
+👉 Ollama slots into the same spot Gemini fills later in this pipeline — the generation step. Swapping between them is mostly a matter of swapping which function `ask()` calls at the end: Gemini when you want a strong hosted model, Ollama when you want everything running fully local and offline.
+
+---
+
+## 3. Sentence Transformers
+
+### 🧪 Practical
+
+You already met FAISS in Day 11 — today it plays its actual role: the in-process vector store holding every embedded chunk from your knowledge base, ready for fast similarity search at query time.
 
 **Sentence Transformers** is a Python library for generating embeddings *locally* — no API calls, no per-request cost, runs entirely on your own machine. It's a great fit for the embedding step of a self-contained tool, keeping the only external API call reserved for the final generation step.
 
@@ -97,7 +161,7 @@ First 5 values of vector 1: [-0.0231  0.0847 -0.0512  0.0193  0.0664]
 
 ---
 
-## 3. FAISS
+## 4. FAISS
 
 ### 🧪 Practical
 
@@ -127,7 +191,7 @@ flowchart TD
 import faiss
 import numpy as np
 
-# chunk_vectors from Section 2 (shape: 3, 384)
+# chunk_vectors from Section 3 (shape: 3, 384)
 dimension = chunk_vectors.shape[1]
 index = faiss.IndexFlatL2(dimension)
 index.add(np.array(chunk_vectors, dtype="float32"))
@@ -144,7 +208,7 @@ Index built. Total vectors stored: 3
 
 ---
 
-## 4. Retriever
+## 5. Retriever
 
 ### 🧪 Practical
 
@@ -191,7 +255,7 @@ Example output:
 
 ---
 
-## 5. Prompt Construction
+## 6. Prompt Construction
 
 ### 📖 Theory
 
@@ -222,11 +286,11 @@ flowchart TD
 - A weak prompt: `"{chunk1} {chunk2} how do I roll back?"` — no structure, the model has to guess where context ends and the question begins.
 - A strong prompt: clearly labeled `Context:` and `Question:` sections, plus an explicit instruction like *"answer using only the information in the context; if the answer isn't there, say so"* — this single instruction is what prevents the model from quietly falling back on its own general knowledge when your docs don't actually cover something.
 
-> Theory here — the actual template gets built and used together with context injection in Section 6.
+> Theory here — the actual template gets built and used together with context injection in Section 7.
 
 ---
 
-## 6. Context Injection
+## 7. Context Injection
 
 ### 🧪 Practical
 
@@ -286,7 +350,7 @@ Answer:
 
 ---
 
-## 7. Putting It All Together
+## 8. Putting It All Together
 
 ### 🧪 Practical
 
