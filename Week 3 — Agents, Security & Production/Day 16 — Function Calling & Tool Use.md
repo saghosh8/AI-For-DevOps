@@ -413,5 +413,5 @@ Have a question, suggestion, or idea?
 
 ---
 
-| 📘 Next — Day 17: AI + DevOps | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/saghosh8-patch-7-Day-15/Week%203%20%E2%80%94%20Agents%2C%20Security%20%26%20Production/Day%2017%20%E2%80%94%20AI%20%2B%20DevOps.md) |
+| 📘 Next — Day 17: AI + DevOps | [![Next Day](https://img.shields.io/badge/NEXT%20DAY-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%203%20%E2%80%94%20Agents%2C%20Security%20%26%20Production/Day%2017%20%E2%80%94%20AI%20%2B%20DevOps.md) |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
