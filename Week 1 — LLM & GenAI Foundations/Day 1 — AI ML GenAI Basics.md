@@ -82,9 +82,14 @@ So: Generative AI doesn't just classify or predict — it **produces new stuff**
 **🧪 Try it yourself:**
 ```
 1. Open any AI chatbot.
-2. Ask: "Write a Dockerfile for a simple Node.js app that listens on port 3000."
-3. Notice it generates a brand-new file from scratch - not something copied word-for-word from one place - that's Generative AI in action.
-4. Now ask it to generate a Kubernetes Deployment YAML for that same app, and compare how it adapts the output to a different format.
+2. Ask: "Write a Dockerfile for a simple Node.js app
+   that listens on port 3000."
+3. Notice it generates a brand-new file from scratch -
+   not something copied word-for-word from one place -
+   that's Generative AI in action.
+4. Now ask it to generate a Kubernetes Deployment YAML
+   for that same app, and compare how it adapts the
+   output to a different format.
 ```
 
 ---
