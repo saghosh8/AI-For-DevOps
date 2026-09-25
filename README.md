@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 AI For DevOps — 21-Day Hands-on Handbook
+# 🚀 AI For DevOps — 21-Day Hands-on eBook
 
 **Become an AI-Ready DevOps Engineer with Production Projects in Just 21 Days**
 
@@ -41,7 +41,7 @@
 
 </div>
 
-### 📘 What’s Inside the Handbook:
+### 📘 What’s Inside the eBook:
 
 * 🗺️ **21-Day Structured Course** — Complete visual learning with a system flow diagram for every single concept.
 * 🛠️ **3 Real Production Builds** — Hands-on implementation: LLM Assistant → RAG Engine → Autonomous Self-Healing Agents.
