@@ -1,7 +1,3 @@
-# AI For DevOps
-
----
-
 <div align="center">
 
 # 🚀 AI For DevOps — 21-Day Hands-on Handbook
