@@ -1,4 +1,60 @@
-# AI For DevOps
+<div align="center">
+
+# 🚀 AI For DevOps — 21-Day Hands-on Handbook
+
+**Become an AI-Ready DevOps Engineer with Production Projects in Just 21 Days**
+
+<table align="center" border="0" style="border-collapse: collapse; max-width: 650px;">
+  <tr>
+    <td align="center" style="padding: 6px;">
+      <a href="https://topmate.io/sahana_ghosh/2314836">
+        <img src="images/AI%20for%20DevOps%20-%20promo.png" alt="AI for DevOps Promo" width="300">
+      </a>
+    </td>
+    <td align="center" style="padding: 6px;">
+      <a href="https://topmate.io/sahana_ghosh/2314836">
+        <img src="images/weekly.png" alt="Weekly Breakdown" width="300">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 6px;">
+      <a href="https://topmate.io/sahana_ghosh/2314836">
+        <img src="images/interview.png" alt="Interview Questions and Visuals" width="300">
+      </a>
+    </td>
+    <td align="center" style="padding: 6px;">
+      <a href="https://topmate.io/sahana_ghosh/2314836">
+        <img src="images/projects.png" alt="3 Real Project Builds" width="300">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="https://topmate.io/sahana_ghosh/2314836">
+    <img src="https://img.shields.io/badge/DOWNLOAD%20eBook%20NOW-007ACC?style=for-the-badge&logoColor=white&labelColor=007ACC" alt="Buy Now" height="38">
+  </a>
+</p>
+
+> 🎁 **Special Launch Offer:** Use coupon code **`FIRST25`** at checkout for a surprise discount *(Limited to the first 25 buyers only!)*
+
+</div>
+
+### 📘 What’s Inside the Handbook:
+
+* 🗺️ **21-Day Structured Course** — Complete visual learning with a system flow diagram for every single concept.
+* 🛠️ **3 Real Production Builds** — Hands-on implementation: LLM Assistant → RAG Engine → Autonomous Self-Healing Agents.
+* 💬 **100 System Interview Q&As** — Senior design solutions paired with visual architecture diagrams so concepts stick.
+* 🔐 **Production Codebase** — Ready-to-deploy Docker setups, LangGraph patterns, and enterprise guardrails.
+
+<div align="center">
+
+👉 **[Click here to grab your copy on Topmate](https://topmate.io/sahana_ghosh/2314836)**
+
+</div>
+
+---
 
 <a href="https://github.com/saghosh8/AI-For-DevOps">
   <img src="https://img.shields.io/github/stars/saghosh8/AI-For-DevOps?style=for-the-badge&logo=github&label=STAR" />
@@ -49,37 +105,6 @@ The course covers **LLMs, GenAI, AI-powered DevOps, automation, and hands-on use
 | **Day 19** | 📊 **LLMOps**                       | Model Versioning · Prompt Versioning · Evaluation · Monitoring · Logging · Cost · Latency · Observability                | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%203%20%E2%80%94%20Agents%2C%20Security%20%26%20Production/Day%2019%20%E2%80%94%20LLMOps.md"><img src="https://img.shields.io/badge/READ%20DAY%2019-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a>                                 |
 | **Day 20** | 🔌 **MCP + Modern AI Architecture** | MCP · MCP Server/Client · Tools vs Resources · MCP + GitHub · MCP + DevOps · Agent + RAG + MCP                           | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%203%20%E2%80%94%20Agents%2C%20Security%20%26%20Production/Day%2020%20%E2%80%94%20MCP%20%2B%20Modern%20AI%20Architecture.md"><img src="https://img.shields.io/badge/READ%20DAY%2020-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a> |
 | **Day 21** | 🚀 **Final Project + Interview**    | AI DevOps Release Assistant · Architecture · RAG · Agents · Tools · Security · Production · Interview Preparation        | <a href="https://github.com/saghosh8/AI-For-DevOps/blob/main/Week%203%20%E2%80%94%20Agents%2C%20Security%20%26%20Production/Day%2021%20%E2%80%94%20Final%20Project%20%2B%20Interview.md"><img src="https://img.shields.io/badge/READ%20DAY%2021-0ea5e9?style=for-the-badge&logo=github&logoColor=white" /></a>      |
-
----
-
-<div align="center">
-
-# 🚀 AI For DevOps — 21-Day Hands-on Handbook
-
-**Become an AI-Ready DevOps Engineer with Production Projects in Just 21 Days**
-
-<p align="center">
-  <a href="https://topmate.io/sahana_ghosh/2314836">
-    <img src="https://img.shields.io/badge/BUY%20NOW-007ACC?style=for-the-badge&logoColor=white&labelColor=007ACC" alt="Buy Now" height="42">
-  </a>
-</p>
-
-> 🎁 **Special Launch Offer:** Use coupon code **`FIRST25`** at checkout for a surprise discount *(Limited to the first 25 buyers only!)*
-
-</div>
-
-### 📘 What’s Inside the Handbook:
-
-* 🗺️ **21-Day Structured Course** — Complete visual learning with a system flow diagram for every single concept.
-* 🛠️ **3 Real Production Builds** — Hands-on implementation: LLM Assistant → RAG Engine → Autonomous Self-Healing Agents.
-* 💬 **100 System Interview Q&As** — Senior design solutions paired with visual architecture diagrams so concepts stick.
-* 🔐 **Production Codebase** — Ready-to-deploy Docker setups, LangGraph patterns, and enterprise guardrails.
-
-<div align="center">
-
-👉 **[Click here to grab your copy on Topmate](https://topmate.io/sahana_ghosh/2314836)**
-
-</div>
 
 ---
 
